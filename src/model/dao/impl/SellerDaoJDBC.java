@@ -12,9 +12,9 @@ import java.util.Map;
 
 import db.DB;
 import db.DbException;
-import model.entities.Seller;
 import model.dao.SellerDao;
 import model.entities.Department;
+import model.entities.Seller;
 
 public class SellerDaoJDBC implements SellerDao{
 	
@@ -146,7 +146,7 @@ public class SellerDaoJDBC implements SellerDao{
 		seller.setId(rs.getInt("Id"));
 		seller.setName(rs.getString("Name"));
 		seller.setEmail(rs.getString("Email"));
-		seller.setBirthDate(rs.getDate("BirthDate"));
+		seller.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
 		seller.setBaseSalary(rs.getDouble("BaseSalary"));
 		seller.setDepartment(department);
 		return seller;
